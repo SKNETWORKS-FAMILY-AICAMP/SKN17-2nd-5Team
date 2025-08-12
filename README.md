@@ -581,6 +581,12 @@ Cramér's V (effect size): 0.1311
 
 ![후니버스](images/best_model_ROC_AUC.png)
 
+![후니버스](images/best_model_precision_recall_curve.png)
+
+![후니버스](images/best_model_thresholdline.png)
+
+![후니버스](images/best_model_calibration_curve.png)
+
 ---
 
 추가적으로, **SMOTENC 오버샘플링의 효과를 검증**하기 위해 전처리 및 인코딩을 거친 **원본 데이터(오버샘플링 미적용)**를 동일한 모델에 학습시켜 비교 실험을 진행.
@@ -616,12 +622,7 @@ SMOTENC 미적용 결과:
 <br>
 하지만 Feature importance와 크래머 V 분석의 경향성이 완전히 같지 않다는 것의 의미는 EDA만으로 포착 할 수 없는 다변량 변수들간의 관계들을 머신러닝 모델이 면밀히 분석해 유의미한 결과값을 도출할 수 있다는 의의가 있음을 확인 
 
-
-![후니버스](images/best_model_precision_recall_curve.png)
-
-![후니버스](images/best_model_thresholdline.png)
-
-![후니버스](images/best_model_calibration_curve.png)
+<br>
 
 ## 8. 한계점
 
