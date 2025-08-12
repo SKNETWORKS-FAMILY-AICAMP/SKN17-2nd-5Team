@@ -555,7 +555,7 @@ Cramér's V (effect size): 0.1311
 
 <br>
 
-![best_model_auc](images\best_model_ROC_AUC.png)
+![후니버스](images\best_model_ROC_AUC.png)
 
 ---
 
@@ -582,13 +582,13 @@ Cramér's V (effect size): 0.1311
 
 ### 7.4 최적 모델 성능에 대한 고찰
 
-![best_model_feature_importances](images\best_model_feature_importances.png)
+![후니버스](images\best_model_feature_importances.png)
 
-![best_model_precision_recall_curve](images\best_model_precision_recall_curve.png)
+![후니버스](images\best_model_precision_recall_curve.png)
 
-![best_model_threshold_line](images\best_model_thresholdline.png)
+![후니버스](images\best_model_thresholdline.png)
 
-![best_model_calibration_curve](images\best_model_calibration_curve.png)
+![후니버스](images\best_model_calibration_curve.png)
 
 ## 8. 한계점
 - 캐글데이터 쓴거 -> 실제 raw가 아니다보니 데이터 관련성이 미리 설계되었을 가능성
