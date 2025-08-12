@@ -25,12 +25,14 @@ correct_order = [
 
 # Encoding Label
 languages = {'Amharic': 0, 'Arabic': 1, 'Armenian': 2, 'Chinese': 3, 'Czech': 4, 'Danish': 5, 'Dutch': 6, 'English': 7, 'Farsi (Persian)': 8, 'Finnish': 9, 'French': 10, 'Ga': 11, 'German': 12, 'Greek': 13, 'Hebrew': 14, 'Hindi': 15, 'Hungarian': 16, 'Italian': 17, 'Japanese': 18, 'Khmer (Cambodian)': 19, 'Korean': 20, 'Laotian (Lao)': 21, 'Latvian (Lettish)': 22, 'Norwegian': 23, 'Polish': 24, 'Portuguese': 25, 'Romanian': 26, 'Russian': 27, 'Serbo-Croatian': 28, 'Slovenian': 29, 'Spanish': 30, 'Swedish': 31, 'Tagalog': 32, 'Thai': 33, 'Turkish': 34, 'Urdu': 35, 'Vietnamese': 36}
-nielsen_prizms = {'FE': 0, 'FM': 1, 'FW': 2, 'ME': 3, 'MM': 4, 'MW': 5, 'YE': 6, 'YM': 7, 'YW': 8}
+
 source_channels = {'AdvAdm': 0, 'Agent': 1, 'Assoc': 2, 'CCAuto': 3, 'CSR': 4, 'Chat': 5, 'CircAdm': 6, 'Contest': 7, 'Counter': 8, 'Crew': 9, 'Crew1': 10, 'Crew2': 11, 'Crew3': 12, 'Crew4': 13, 'CustCall': 14, 'DIRECTM2': 15, 'DIRECTM4': 16, 'DTI': 17, 'DirectMl': 18, 'EMAIL4': 19, 'Email': 20, 'Event': 21, 'Event1': 22, 'FUSS': 23, 'Gift': 24, 'INTERNET': 25, 'InPaper': 26, 'Internet': 27, 'Internt4': 28, 'Kiosk': 29, 'Kiosk1': 30, 'Kiosk2': 31, 'Kiosk3': 32, 'Kiosk4': 33, 'Kiosk5': 34, 'OutMedia': 35, 'PARTNER': 36, 'Partner': 37, 'RetMail': 38, 'RetenIn': 39, 'RetenOut': 40, 'SCINSRT4': 41, 'SCINSRT6': 42, 'SCinsert': 43, 'System': 44, 'TMC': 45, 'TeleIn': 46, 'TeleOut': 47, 'VRU': 48, 'iSrvices': 49}
 cities = {'ALISO VIEJO': 0, 'ANAHEIM': 1, 'ARTESIA': 2, 'BREA': 3, 'BUENA PARK': 4, 'CAPISTRANO BEACH': 5, 'CERRITOS': 6, 'CHINO': 7, 'CHINO HILLS': 8, 'CORONA': 9, 'CORONA DEL MAR': 10, 'COSTA MESA': 11, 'CYPRESS': 12, 'DANA POINT': 13, 'DIAMOND BAR': 14, 'FOOTHILL RANCH': 15, 'FOUNTAIN VALLEY': 16, 'FULLERTON': 17, 'GARDEN GROVE': 18, 'HAWAIIAN GARDENS': 19, 'HUNTINGTON BEACH': 20, 'IRVINE': 21, 'LA HABRA': 22, 'LA MIRADA': 23, 'LA PALMA': 24, 'LADERA RANCH': 25, 'LAGUNA BEACH': 26, 'LAGUNA HILLS': 27, 'LAGUNA NIGUEL': 28, 'LAGUNA WOODS': 29, 'LAKE FOREST': 30, 'LAKEWOOD': 31, 'LONG BEACH': 32, 'LOS ALAMITOS': 33, 'MIDWAY CITY': 34, 'MISSION VIEJO': 35, 'MURRIETA': 36, 'NEWPORT BEACH': 37, 'NEWPORT COAST': 38, 'NORCO': 39, 'ORANGE': 40, 'PLACENTIA': 41, 'RANCHO SANTA MARGARITA': 42, 'SAN CLEMENTE': 43, 'SAN JUAN CAPISTRANO': 44, 'SANTA ANA': 45, 'SEAL BEACH': 46, 'SIGNAL HILL': 47, 'SILVERADO': 48, 'STANTON': 49, 'TRABUCO CANYON': 50, 'TUSTIN': 51, 'VILLA PARK': 52, 'WESTMINSTER': 53, 'WHITTIER': 54, 'YORBA LINDA': 55}
 counties = {'LOS ANGELES': 0, 'ORANGE': 1, 'RIVERSIDE': 2, 'SAN BERNARDINO': 3}
 ethnicities = {'African (other)': 0, 'African American 95%+': 1, 'Albanian': 2, 'Angolan': 3, 'Arab': 4, 'Armenian': 5, 'Austrian': 6, 'Belgian': 7, 'Bhutanese': 8, 'Bulgarian': 9, 'Byelorussian (Belarusian)': 10, 'Chinese': 11, 'Croatian': 12, 'Czech': 13, 'Danish': 14, 'Dutch': 15, 'Egyptian': 16, 'English': 17, 'Estonian': 18, 'Ethiopian': 19, 'Filipino (Philippine)': 20, 'Finnish': 21, 'French': 22, 'German': 23, 'Ghanaian': 24, 'Greek': 25, 'Hawaiian': 26, 'Hispanic': 27, 'Hungarian': 28, 'Indian': 29, 'Indonesian': 30, 'Iraqi': 31, 'Irish': 32, 'Italian': 33, 'Japanese': 34, 'Jewish': 35, 'Kenyan': 36, 'Khmer (Kampuchean, Cambodian)': 37, 'Korean': 38, 'Laotian': 39, 'Latvian': 40, 'Lithuanian': 41, 'Luxembourgian': 42, 'Malawian': 43, 'Myanmar (Burma)': 44, 'Native American (American Indian)': 45, 'Nigerian': 46, 'Norwegian': 47, 'Pakistani': 48, 'Persian': 49, 'Polish': 50, 'Portuguese': 51, 'Romanian': 52, 'Ruandan (Rwandan)': 53, 'Russian': 54, 'Scottish (Scotch)': 55, 'Serbian': 56, 'Slovakian (Slovak)': 57, 'Slovenian (Slovene)': 58, 'Swaziland': 59, 'Swedish': 60, 'Swiss': 61, 'Syrian': 62, 'Thai': 63, 'Turkish': 64, 'Ugandan': 65, 'Ukrainian': 66, 'Vietnamese': 67, 'Welsh': 68, 'Zairian (Democratic Republic of the Con': 69, 'Zimbabwean': 70, 'multi-ethnic': 71, 'unknown': 72}
 nielsen_options = {'FE': 0, 'FM': 1, 'FW': 2, 'ME': 3, 'MM': 4, 'MW': 5, 'YE': 6, 'YM': 7, 'YW': 8}
+weekly_fees = {'$0': 0, '$0 - $0.01': 1, '$0.01 - $0.50': 2, '$0.51 - $0.99': 3, '$1.00 - $1.99': 4, '$10.00 - $10.99': 5, '$2.00 - $2.99': 6, '$3.00 - $3.99': 7, '$4.00 - $4.99': 8, '$5.00 - $5.99': 9, '$6.00 - $6.99': 10, '$7.00 - $7.99': 11, '$8.00 - $8.99': 12, '$9.00 - $9.99': 13}
+delivery_periods = {'7day': 0, '7dayol': 1, '7dayt': 2, 'fri-sun': 3, 'fri-sunt': 4, 'mon-fri': 5, 'omtwtfo': 6, 'satsun': 7, 'soooofs': 8, 'soooofst': 9, 'soooooo': 10, 'soooooot': 11, 'sooooos': 12, 'sooooost': 13, 'soootfs': 14, 'soootfst': 15, 'sun-fri': 16, 'sun-frit': 17, 'sunonly': 18, 'sunonlyt': 19, 'thu-sun': 20, 'thu-sunt': 21}
 
 # ========================
 # 탭1: 개별 예측
@@ -53,19 +55,20 @@ with st.form(key="prediction_form"):
         age = st.slider("🎂 Age", 18, 90, 30)
         dummy_for_Children_display= st.selectbox('👨🏻‍👩🏻‍👦🏻‍👦🏻아이 여부',['N',"Y"])
         dummy_for_Children = 0 if dummy_for_Children_display == "N" else 1
-        weekly_fee = st.text_input("💸 Weekly Fee(예: 123.45)")
-        if weekly_fee.strip() != "":
-            try:
-                # 쉼표 입력도 허용하려면 replace(",", "") 추가
-                weekly_fee = float(weekly_fee.replace(",", "").strip())
-            except ValueError:
-                st.error("유효한 숫자가 아닙니다. 숫자와 소수점만 입력하세요.")
-        reward_program_display = st.selectbox("🎁 Reward Program", ["미참여", "참여"])
-        reward_program = 0 if reward_program_display == "미참여" else 1
-        delivery_period = st.slider("🚚 Delivery Period", 0, 20, 3)
-        year_of_residence = st.slider("📅 Year Of Residence", 1, 30, 10)
+        weekly_fee_display = st.selectbox("💸 Weekly Fee",['$7.00 - $7.99', '$0.01 - $0.50', '$1.00 - $1.99', '$8.00 - $8.99',
+       '$0 - $0.01', '$2.00 - $2.99', '$9.00 - $9.99', '$4.00 - $4.99',
+       '$0.51 - $0.99', '$3.00 - $3.99', '$5.00 - $5.99', '$6.00 - $6.99',
+       '$10.00 - $10.99', '$0'])
+        weekly_fee = weekly_fees[weekly_fee_display]
+        
+        reward_program = st.slider("🎁 Reward Program", 0, 100, 3)
+        delivery_period_display = st.selectbox("🚚 Delivery Period", ['7day', 'sunonly', 'thu-sun', 'satsun', '7dayol', 'sooooos',
+       'mon-fri', 'soooofs', 'soooooot', '7dayt', 'fri-sun', 'soootfs',
+       'sunonlyt', 'soooooo', 'thu-sunt', 'omtwtfo', 'fri-sunt',
+       'soootfst', 'sun-fri', 'sooooost', 'sun-frit', 'soooofst'])
+        delivery_period = delivery_periods[delivery_period_display]
+        year_of_residence = st.slider("📅 Year Of Residence", 1, 100, 10)
             
-    
     with col2:
         home_ownership_display = st.selectbox("🏠 Home Ownership", ["RENTER", "OWNER"])
         home_ownership = 1 if home_ownership_display == "RENTER" else 0   
