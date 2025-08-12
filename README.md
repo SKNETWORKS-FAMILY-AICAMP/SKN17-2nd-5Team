@@ -359,29 +359,236 @@ Cramér's V (effect size): 0.1311
 
 ### 7.1 학습을 위한 전처리
 
-#### 나이, 소득 수치형 변환
-- 그 이유에 대해 논문까지 첨부해가며 설명
+#### 나이(`Age range`) 및 소득(`HH Income`) 수치형 특성으로 변환 
 
-#### 데이터 불균형
-- SMOTENC 처리 사용 결정 그러나 실험은 안한 것과도 비교 분석
-- SMOTENC 적용을 위해 사전 범주형 특성 라벨인코딩 진행
-- SMOTEENC 결과 비율 변화 보여주기
-- 수치형 변수 스탠다드 스케일링
+- 원본 데이터의 **나이**와 **소득**은 구간별 범주형 데이터로 제공됨.  
+- 대부분의 머신러닝 알고리즘(특히 scikit-learn)은 입력을 수치형으로 받으므로, 범주형 변수는 모델링 전에 변환 필요(Pedregosa et al., 2011).  
+- *Age range*와 *HH Income*은 연속형 변수를 구간화한 서열형(ordinal) 범주임.  
+  - 단순 라벨 처리 시 구간 내부의 크기 정보가 손실되고, 모델이 연속적 패턴을 학습하기 어려움.  
+  - 실제 값(나이, 달러)로 복원 시, Gradient Boosting 같은 트리 기반 모델이 더 세밀한 분할 경계를 학습 가능(Friedman, 2001; Chen & Guestrin, 2016).  
 
-### 7.2 머신러닝을 위한 모델 선정
-- 머신러닝 모델 리스트
+- **나이 변환(Age)**  
+  - 통계학적으로 구간 데이터는 계급 중앙값(class midpoint)으로 추정하는 것이 표준(OpenStax, 2019).  
+  - 본 프로젝트에서는 중앙값 대신 절단 정규분포(truncated normal)에서 난수를 추출하는 **확률적 대치(stochastic imputation)** 사용.  
+  - 분산 축소 방지 및 변동성 유지에 유리(van Buuren, 2018).  
 
-### 7.3 머신러닝 모델 학습
-- GridSearchCV로 다양한 하이퍼파라미터 비교 및 최적 조합 탐색
-- 교차검증을 통해 모델의 일반화 성능 평가
-- 각 모델별 최고 성능 기준 최적 모델 선정
-- 최적 모델 성능 고도화(threshold 포함)
-- 최적 모델 기준 성능지표 게산(classication report, ROC curve)
+- **소득 변환(HH Income)**  
+  - 소득 분포는 일반적으로 로그 정규분포, 상위 구간은 파레토 분포 꼬리(Aitchison & Brown, 1957; Toda, 2012).  
+  - 각 구간의 하한·상한 범위 내에서 로그 정규분포 기반 난수 추출 → 현실적·일관성 있는 값 생성.  
+
+- **변환 장점**  
+  - 단순 서열형 인코딩(예: “25–29” → 1, “30–34” → 2)의 인위적 간격 문제 해소(scikit-learn developers, 2024).  
+  - 의미 있는 수치값으로 변환해 거리·순서 정보 유지.  
+  - 다양한 머신러닝 알고리즘에서 변수 활용성 극대화.  
+
+
+**<참고 문헌>** 
+- Aitchison, J., & Brown, J. A. C. (1957). The lognormal distribution. Cambridge University Press.
+
+- Chen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785–794.
+
+- Friedman, J. H. (2001). Greedy function approximation: A gradient boosting machine. Annals of Statistics, 29(5), 1189–1232.
+
+- OpenStax. (2019). Introductory statistics. Rice University.
+
+- Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., ... & Duchesnay, É. (2011). Scikit-learn: Machine learning in Python. Journal of Machine Learning Research, 12, 2825–2830.
+
+- scikit-learn developers. (2024). Encoding categorical features. Retrieved from https://scikit-learn.org
+
+- Toda, A. A. (2012). The double power law in income distribution: Explanations and evidence. Journal of Economic Behavior & Organization, 84(1), 364–381.
+
+- van Buuren, S. (2018). Flexible imputation of missing data (2nd ed.). CRC Press.
+
+<br>
+
+#### 데이터 불균형 해결 방법
+
+- **데이터 불균형 문제**  
+  - 원본 데이터에서 `is_churned=1`이 압도적으로 많음(약 20:80 비율).  
+  - 이 상태로 학습 시, 모델이 다수 클래스(1)에만 좋은 성능을 내고, 소수 클래스(0) 예측 성능이 저조해질 가능성이 높음.  
+
+- **해결 방법**  
+  - 오버샘플링 기법 **SMOTENC** 도입.  
+  - SMOTENC 적용 전, 범주형 데이터 처리를 위해 **라벨 인코딩(Label Encoding)** 수행.  
+  - 클래스 불균형 해소를 위해 소수 클래스 샘플을 합성하여 양 클래스 비율을 균등하게 조정.  
+
+- **라벨 인코딩 및 SMOTENC 적용 절차**  
+  1. 타깃(`is_churned`)과 피처 분리.  
+  2. 범주형(`cat_cols`)과 수치형(`num_cols`) 컬럼 지정 및 실제 존재하는 컬럼만 필터링.  
+  3. 범주형 컬럼을 `pd.Categorical(...).codes`로 변환.  
+  4. SMOTENC에 전달할 범주형 컬럼 인덱스(`cat_idx`) 생성.  
+  5. 소수 클래스 개수를 기반으로 `k_neighbors` 값 설정.  
+  6. SMOTENC로 데이터 재샘플링(`fit_resample`).  
+
+- **적용 코드**
+```python
+  # 타깃 / 피처 분리
+  y = converted_df['is_churned'].astype(int)
+  X = converted_df.drop(columns=['is_churned']).copy()
+
+  # 범주형 / 수치형 컬럼 지정
+  cat_cols = [
+      'Home Ownership','Ethnicity','dummy for Children',
+      'Language','City','County','weekly fee',
+      'Deliveryperiod','Nielsen Prizm','Source Channel'
+  ]
+  num_cols = ['Year Of Residence', 'reward program', 'Age', 'Income']
+
+  # 실제 존재하는 컬럼만 남기기
+  cat_cols = [c for c in cat_cols if c in X.columns]
+  num_cols = [c for c in num_cols if c in X.columns]
+
+  # 범주형을 정수 코드로 변환
+  X_enc = X.copy()
+  for c in cat_cols:
+      X_enc[c] = pd.Categorical(X_enc[c]).codes
+
+  # SMOTENC용 범주형 컬럼 인덱스
+  cat_idx = [X_enc.columns.get_loc(c) for c in cat_cols]
+
+  # k_neighbors 설정
+  class_counts = Counter(y)
+  minority_n = min(class_counts.values())
+  k_neighbors = max(1, min(5, minority_n - 1))
+
+  # SMOTENC 적용
+  smote = SMOTENC(
+      categorical_features=cat_idx,
+      random_state=42,
+      k_neighbors=k_neighbors
+  )
+  X_res, y_res = smote.fit_resample(X_enc, y)
+```
+
+**SMOTENC 적용 후 결과**
+
+| 구분              | 클래스 1 개수 | 클래스 0 개수 |
+|-------------------|--------------|--------------|
+| 변경 전           | 12,434       | 3,004        |
+| 변경 후           | 12,434       | 12,434       |
+
+
+<br>
+
+### 7.2 머신러닝을 위한 모델 선정 및 사전 학습
+각 조원은 하나의 모델을 맡아 총 **5개의 모델**을 구성하였으며,  
+`GridSearchCV`를 활용해 다양한 하이퍼파라미터 조합을 탐색하고, 교차 검증을 통해 모델의 일반화 성능을 평가하였습니다.  
+각 모델의 최고 성능 결과는 다음과 같습니다.  
+
+
+1) **XGBoost**
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| 0     | 0.87      | 0.89   | 0.88     | 2,487   |
+| 1     | 0.89      | 0.86   | 0.87     | 2,487   |
+| **Accuracy**  |           |        | **0.88** | 4,974   |
+
+<br>
+
+2) **Random Forest**
+
+| Class        | Precision | Recall | F1-Score | Support |
+|--------------|-----------|--------|----------|---------|
+| 0            | 0.87      | 0.87   | 0.87     | 3,109   |
+| 1            | 0.87      | 0.87   | 0.87     | 3,108   |
+| **Accuracy** |           |        | **0.87** | 6,217   |
+
+<br>
+
+3) **Decision Tree**
+
+| Class        | Precision | Recall | F1-Score | Support |
+|--------------|-----------|--------|----------|---------|
+| 0            | 0.79      | 0.84   | 0.82     | 2,487   |
+| 1            | 0.83      | 0.78   | 0.81     | 2,487   |
+| **Accuracy** |           |        | **0.81** | 4,974   |
+
+<br>
+
+4) **SVM**
+
+| Class        | Precision | Recall | F1-Score | Support |
+|--------------|-----------|--------|----------|---------|
+| 0            | 0.565     | 0.527  | 0.545    | 3,143   |
+| 1            | 0.547     | 0.585  | 0.566    | 3,074   |
+| **Accuracy** |           |        | **0.556**| 6,217   |
+
+<br>
+
+5) **Gradient Boosting**
+
+| Class        | Precision | Recall | F1-Score | Support |
+|--------------|-----------|--------|----------|---------|
+| 0            | 0.89      | 0.89   | 0.89     | 2,487   |
+| 1            | 0.89      | 0.89   | 0.89     | 2,487   |
+| **Accuracy** |           |        | **0.89** | 4,974   |
+
+<br>
+
+**결론:**  
+다섯 모델의 성능 비교 결과, **Gradient Boosting**이 가장 높은 정확도와 균형 잡힌 성능을 보여 최종 모델로 선정하였습니다.
+
+<br>
+
+### 7.3 최종 모델 성능 고도화
+
+최종 모델로 선정된 **Gradient Boosting**의 최적 하이퍼파라미터 조합은 다음과 같습니다.
+
+| Hyperparameter | Value  |
+|----------------|--------|
+| learning_rate  | 0.225  |
+| max_depth      | 8      |
+| n_estimators   | 400    |
+| subsample      | 0.95   |
+
+해당 파라미터를 기반으로, 모델 성능을 더욱 고도화하기 위해 **추가적인 수동 하이퍼파라미터 및 임계치(Threshold) 조정**을 진행하였고, 그 결과 성능이 유의미하게 향상되었습니다.
+
+**Best Threshold:** 0.32  
+**Macro F1:** 0.8900  
+
+| Class        | Precision | Recall | F1-Score | Support |
+|--------------|-----------|--------|----------|---------|
+| 0            | 0.90      | 0.88   | 0.89     | 2,487   |
+| 1            | 0.88      | 0.90   | 0.89     | 2,487   |
+| **Accuracy** |           |        | **0.89** | 4,974   |
+
+<br>
+
+![best_model_auc](images\best_model_ROC_AUC.png)
+
+---
+
+추가적으로, **SMOTENC 오버샘플링의 효과를 검증**하기 위해 전처리 및 인코딩을 거친 **원본 데이터(오버샘플링 미적용)**를 동일한 모델에 학습시켜 비교 실험을 진행했습니다.
+
+**Best Threshold:** 0.62  
+**Macro F1:** 0.7090  
+
+| Class        | Precision | Recall | F1-Score | Support |
+|--------------|-----------|--------|----------|---------|
+| 0            | 0.62      | 0.44   | 0.51     | 601     |
+| 1            | 0.87      | 0.94   | 0.90     | 2,487   |
+| **Accuracy** |           |        | **0.84** | 3,088   |
+
+---
+<br>
+
+**결론:**  
+- 오버샘플링 미적용 시, **전체 정확도(Accuracy)** 는 0.84로 비교적 높게 유지되었으나, 소수 클래스(`is_churned = 0`)에 대한 **Recall** 과 **F1-Score** 가 크게 하락.  
+- 반면, SMOTENC 적용 시 소수 클래스 예측력이 크게 개선되었으며, 전체적인 Macro F1 점수도 향상됨.  
+- 이를 통해 **오버샘플링 적용 전략이 소수 클래스 예측 성능 향상에 효과적임**을 검증함.
+
+<br> 
 
 ### 7.4 최적 모델 성능에 대한 고찰
-- feature importance
-- 변수 중요도와 크래머의 V 값간의 경향성이 일치하는 비교
-- threshold가 0.3 일때 성능이 최적이었는가에 대한 고찰
+
+![best_model_feature_importances](images\best_model_feature_importances.png)
+
+![best_model_precision_recall_curve](images\best_model_precision_recall_curve.png)
+
+![best_model_threshold_line](images\best_model_thresholdline.png)
+
+![best_model_calibration_curve](images\best_model_calibration_curve.png)
 
 ## 8. 한계점
 - 캐글데이터 쓴거 -> 실제 raw가 아니다보니 데이터 관련성이 미리 설계되었을 가능성
