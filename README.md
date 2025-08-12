@@ -149,10 +149,10 @@
 
 #### **주요 변수**
 - `income` : 수입
-- `ownership` : 자가 여부
+- `ownership` : 주거 형태(임대/자가)
 - `ethnicity` : 민족
 - `reward program` : 보상혜택 수령 횟수
-- `nielsen prizem` : 사회적
+- `nielsen prizem` : 인구통계 세분화 모델
 - `age range` : 나이
 - `deliveryperiod` : 배달 받는 요일
 - `year of residence` : 거주기간
