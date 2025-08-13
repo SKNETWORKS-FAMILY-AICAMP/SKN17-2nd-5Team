@@ -8,13 +8,14 @@
 <br>
 
 1. [Team Introduction](#1-Introduce-Team)
-3. [Project Overview](#2-Project-Overview)
-4. [Technology Stack & Models](#3-Technology-Stack-&-Models)
-5. [Data Selection & Structure](#4-데이터-선택-및-구조)
-6. [Data preprocessing and integration](#5-데이터-전처리-및-통합)
-7. [EDA](#6-eda)
-8. [Machine Learning](#7-머신러닝)
-9. [Limit Point](#8-한계점)
+2. [Project Overview](#2-Project-Overview)
+3. [Technology Stack & Models](#3-Technology-Stack-&-Models)
+4. [Data Selection & Structure](#4-데이터-선택-및-구조)
+5. [Data preprocessing and integration](#5-데이터-전처리-및-통합)
+6. [EDA](#6-eda)
+7. [Machine Learning](#7-머신러닝)
+8. [Limit Point](#8-한계점)
+9. [Streamlit Page](#9-시연페이지)
 <br>
 <br>
 
@@ -99,20 +100,13 @@
   - 구독자 이탈 방지 전략은 신문사의 생존과 지속 가능성에 필수.
   - 이탈 예측은 단순 분석을 넘어 디지털 전환 및 지속 가능 경영 전략에 기여.
 
-- **프로젝트의 목표와 의의**
-  - 목표: 신문 구독자 이탈 예측 모델 개발.
-  - 데이터 기반 분석으로 독자 특성·이탈 요인 규명.
-  - 변화하는 미디어 환경 속 경쟁력 유지.
-  - 건강한 정보 전달 체계 유지에 사회적 기여.
 
 <br>
 
 ### ✅ 프로젝트 목표
-- 구독자의 개인 특성을 면밀히 분석하고 이탈 가능성을 예측하는 머신러닝 모델 개발.
-
-  - 이탈 위험 구독자를 조기에 식별하여 맞춤형 할인, 콘텐츠 추천 등 유지 전략을 실행할 수 있게 함.
-
-  - 장기적으로 안정적인 구독 기반 확보할 수 있게 함으로써 광고 수익, 브랜드 가치 향상 도모까지 궁극적으로 추구함.
+  - 데이터 기반으로 이탈 위험 구독자를 조기에 식별하여 맞춤형 할인, 콘텐츠 추천 등 유지 전략을 실행할 수 있게 함.
+  - 장기적으로 안정적인 구독 기반 확보할 수 있게 함으로써 변화하는 미디어 환경 속에서 경쟁력을 유지할 수 있게 함.
+  - 건강한 정보 전달 체계 유지로 사회적 기여를 할 수 있게 함.
 
 <br>
 <br>
