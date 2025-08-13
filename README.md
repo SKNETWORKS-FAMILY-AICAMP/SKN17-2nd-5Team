@@ -8,13 +8,13 @@
 <br>
 
 1. [Team Introduction](#1-Introduce-Team)
-2. [Project Overview](#2-Project-Overview)
-3. [Technology Stack & Models](#3-Technology-Stack-&-Models)
-4. [Data Selection & Structure](#4-데이터-선택-및-구조)
-5. [Data preprocessing and integration](#5-데이터-전처리-및-통합)
-6. [EDA](#6-eda)
-7. [Machine Learning](#7-머신러닝)
-8. [Limit Point](#8-한계점)
+3. [Project Overview](#2-Project-Overview)
+4. [Technology Stack & Models](#3-Technology-Stack-&-Models)
+5. [Data Selection & Structure](#4-데이터-선택-및-구조)
+6. [Data preprocessing and integration](#5-데이터-전처리-및-통합)
+7. [EDA](#6-eda)
+8. [Machine Learning](#7-머신러닝)
+9. [Limit Point](#8-한계점)
 <br>
 <br>
 
@@ -595,12 +595,12 @@ Cramér's V (effect size): 0.1311
 | subsample      | 0.95   |
 
 - 해당 파라미터를 기반으로, 모델 성능을 더욱 고도화하기 위해 추가적인 하이퍼파라미터 및 임계치(Threshold) 조정을 진행.
-    - 현재 도출된 최적 파라미터를 포함하는 더 좁은 범위로 GridSearchCV를 활용하여 다양한 하이퍼파라미터 조합을 탐색.
-    - **각 조합에 대해 교차 검증을 수행하고, 폴드별 F1 점수의 평균과 표준편차를 확인함. 표준편차가 매우 작아, 모델의 일반화 성능이 안정적임을 확인.**
+  - 현재 도출된 최적 파라미터를 포함하는 더 좁은 범위로 GridSearchCV를 활용하여 다양한 하이퍼파라미터 조합을 탐색.
+  - **각 조합에 대해 교차 검증을 수행하고, 폴드별 F1 점수의 평균과 표준편차를 확인함. 표준편차가 매우 작아, 모델의 일반화 성능이 안정적임을 확인.**
     ```
     Best model CV mean F1: 0.8762 (+/- 0.0032)
-    ``` 
-    - 극적인 성능 변화는 없었으나, 임계치(Threshold)를 0.32로 조정함으로써 양성 탐지의 핵심 지표인 재현율(Recall)을 향상시킨 최적 모델을 도출함.
+    ```
+  - 극적인 성능 변화는 없었으나, 임계치(Threshold)를 0.32로 조정함으로써 양성 탐지의 핵심 지표인 재현율(Recall)을 향상시킨 최적 모델을 도출함.
 
 <br> 
 
@@ -653,9 +653,7 @@ SMOTENC 미적용 결과:
 ![후니버스](images/best_model_feature_importances.png)
 
 - 특성을 추려가는 과정에서 크래머 V 계수가 높은 특성을 선별해 유의미한 예측 결과를 기대할 수 있다
-<br>
 - 모델이 부여한 Feature importance 경향성과 크래머 V 분석의 상관 계수 경향성이 비슷하기 때문에 EDA 과정에서 특성 선별이 유의미하다는 것을 확인
-<br>
 - 하지만 Feature importance와 크래머 V 분석의 경향성이 완전히 같지 않다는 것의 의미는 EDA만으로 포착 할 수 없는 다변량 변수들간의 관계들을 머신러닝 모델이 면밀히 분석해 유의미한 결과값을 도출할 수 있다는 의의가 있음을 확인 
 
 <br>
@@ -690,7 +688,9 @@ SMOTENC 미적용 결과:
   </tr>
   <tr>
     <td>맹지수</td>
-    <td></td>
+    <td>주제에 맞는 데이터셋을 찾는 과정이 쉽지 않았지만, SMOTENC를 활용하는 방법과 그 효과를 직접 체감할 수 있었습니다.또한 하이퍼파라미터 최적화뿐 아니라 임계치 조정을 통해 모델 성능을 높일 수 있다는 점도 알게되었고,
+마지막으로, 팀원 간 협업에서는 상세한 주석이 원활한 소통과 효율적인 작업에 큰 도움이 된다는 것을 배웠습니다.
+</td>
   </tr>
   <tr>
     <td>김태완</td>
