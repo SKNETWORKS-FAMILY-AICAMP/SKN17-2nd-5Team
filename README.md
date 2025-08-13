@@ -621,8 +621,6 @@ Cramér's V (effect size): 0.1311
 
 ![후니버스](images/best_model_thresholdline.png)
 
-![후니버스](images/best_model_calibration_curve.png)
-
 ---
 
 추가적으로, **SMOTENC 오버샘플링의 효과를 검증**하기 위해 전처리 및 인코딩을 거친 **원본 데이터(오버샘플링 미적용)**를 동일한 모델에 학습시켜 비교 실험을 진행.
@@ -650,7 +648,18 @@ SMOTENC 미적용 결과:
 
 ### 7.4 최적 모델 성능에 대한 고찰
 
-![후니버스](images/best_model_feature_importances.png)
+<p>
+  <img src="images/best_model_calibration_curve.png" alt="후니버스" style="width:600px;" />
+</p>
+
+- X축: 모델이 예측한 평균 확률 <br>
+- Y축: 실제 양성 클래스(1) 비율
+
+<br>
+
+<p>
+  <img src="images/best_model_feature_importances.png" alt="후니버스" style="width:600px;" />
+</p>
 
 - 특성을 추려가는 과정에서 크래머 V 계수가 높은 특성을 선별해 유의미한 예측 결과를 기대할 수 있다
 - 모델이 부여한 Feature importance 경향성과 크래머 V 분석의 상관 계수 경향성이 비슷하기 때문에 EDA 과정에서 특성 선별이 유의미하다는 것을 확인
