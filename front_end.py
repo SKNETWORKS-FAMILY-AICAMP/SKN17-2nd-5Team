@@ -100,7 +100,7 @@ with st.form(key="prediction_form"):
             
         nielsen_prizm = nielsen_options[nielsen_prizm_display[nielsen_prizm_tr_display]]
 
-        soruce_channel_display = st.selectbox('💻 이용 매체',['CircAdm', 'Partner', 'Internet', 'Crew', 'Kiosk', 'SCinsert',
+        soruce_channel_display = st.selectbox('💻 유입 경로',['CircAdm', 'Partner', 'Internet', 'Crew', 'Kiosk', 'SCinsert',
         'TeleIn', 'CustCall', 'RetenIn', 'DirectMl', 'TeleOut', 'VRU',
         'Kiosk1', 'System', 'Chat', 'AdvAdm', 'TMC', 'Crew1', 'Email',
         'RetenOut', 'InPaper', 'Kiosk4', 'Assoc', 'Event', 'Kiosk2',
